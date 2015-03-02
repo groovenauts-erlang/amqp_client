@@ -20,37 +20,37 @@
 -include_lib("rabbit_common/include/rabbit.hrl").
 -include_lib("rabbit_common/include/rabbit_framing.hrl").
 
--record(amqp_msg, {props = #'P_basic'{}, payload = <<>>}).
+-record(amqp_msg, {props = #'P_basic'{} :: #'P_basic'{} , payload = <<>> :: binary()}).
 
--record(amqp_params_network, {username           = <<"guest">>,
-                              password           = <<"guest">>,
-                              virtual_host       = <<"/">>,
-                              host               = "localhost",
-                              port               = undefined,
-                              channel_max        = 0,
-                              frame_max          = 0,
-                              heartbeat          = 0,
-                              connection_timeout = infinity,
-                              ssl_options        = none,
+-record(amqp_params_network, {username           = <<"guest">> :: binary(),
+                              password           = <<"guest">> :: binary(),
+                              virtual_host       = <<"/">> :: binary(),
+                              host               = "localhost" :: string() | binary(),
+                              port               = undefined :: integer(),
+                              channel_max        = 0 :: integer(),
+                              frame_max          = 0 :: integer(),
+                              heartbeat          = 0 :: integer(),
+                              connection_timeout = infinity :: integer(),
+                              ssl_options        = none :: term(),
                               auth_mechanisms    =
                                   [fun amqp_auth_mechanisms:plain/3,
-                                   fun amqp_auth_mechanisms:amqplain/3],
-                              client_properties  = [],
-                              socket_options     = []}).
+                                   fun amqp_auth_mechanisms:amqplain/3] :: list(),
+                              client_properties  = [] :: list(),
+                              socket_options     = [] :: list()}).
 
--record(amqp_params_direct, {username          = none,
-                             password          = none,
-                             virtual_host      = <<"/">>,
-                             node              = node(),
-                             adapter_info      = none,
-                             client_properties = []}).
+-record(amqp_params_direct, {username          = none :: binary(),
+                             password          = none :: binary(),
+                             virtual_host      = <<"/">> :: binary(),
+                             node              = node() :: node(),
+                             adapter_info      = none :: term(),
+                             client_properties = [] :: list() }).
 
--record(amqp_adapter_info, {host            = unknown,
-                            port            = unknown,
-                            peer_host       = unknown,
-                            peer_port       = unknown,
-                            name            = unknown,
-                            protocol        = unknown,
-                            additional_info = []}).
+-record(amqp_adapter_info, {host            = unknown :: string(),
+                            port            = unknown :: integer(),
+                            peer_host       = unknown :: string(),
+                            peer_port       = unknown :: integer(),
+                            name            = unknown :: binary() | string(),
+                            protocol        = unknown :: binary() | string(),
+                            additional_info = [] :: list() }).
 
 -endif.
