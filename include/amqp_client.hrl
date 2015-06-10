@@ -26,11 +26,11 @@
                               password           = <<"guest">> :: binary(),
                               virtual_host       = <<"/">> :: binary(),
                               host               = "localhost" :: string() | binary(),
-                              port               = undefined :: integer(),
+                              port               = undefined :: integer() | undefined,
                               channel_max        = 0 :: integer(),
                               frame_max          = 0 :: integer(),
                               heartbeat          = 0 :: integer(),
-                              connection_timeout = infinity :: integer(),
+                              connection_timeout = infinity :: integer() | infinity,
                               ssl_options        = none :: term(),
                               auth_mechanisms    =
                                   [fun amqp_auth_mechanisms:plain/3,
